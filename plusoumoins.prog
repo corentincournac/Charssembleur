@@ -1,0 +1,49 @@
+sn?fmld?fmld?fml; n<-random sur 3 bit, modulé entre '0' et '9' et piler, une fois par bit
+s$13$ddddde; <-écrire n dans la fonction $11$ après le c
+s$12$dddde; pareil
+s$11$ddde; pareil -> on a n = xyz, x,y,z dans '0'..'9'
+s$1$fd; on affiche la chaîne d'intro
+#i; input : boucle principale
+
+s$2$fdsxi; in centaine
+s$3$fdsxdi; in dizaine
+s$4$fdsxddi; in unité
+
+f$11$k$21$; on compare centaine et centaine. Si c'eset égal on va voir dizaine (21)
+#$201$; sinon boucle
+c9k-; pas égal et 9 : c'est -
++f$11$k+j$201$; chiffre +1. Si c'est égal alors c'était +. sinon on recommence
+#$21$
+f$12$k$22$; on compare dizaine et dizaine. Si c'est égal on va voir unité (22)
+#$211$; sinon boucle
+c9k-; pas égal et 9 : c'est -
++f$12$k+j$211$; chiffre +1. Si c'est égal alors c'était +. sinon on recommence
+#$22$
+f$13$kq; on compare unité et unité. Si c'est égal on a gagné, on quitte
+#$221$; sinon boucle
+c9k-; pas égal et 9 : c'est -
++f$13$k+j$221$; chiffre +1. Si c'est égal alors c'était +. sinon on recommence
+
+#+s$5$fdji
+#-s$6$fdji
+#q
+s$7$fdsnfdq; afficher bien joué, n et quitter
+
+#x***#n***$10$@
+#$11$sxc*r; fonction compare : centaine
+#$12$sxdc*r; fonction compare : dizaine
+#$13$sxddc*r@; fonction compare : unités
+#$1$Plus ou moins : Charssembleur edition !$10$
+Par -Coco-$10$
+Veuillez entrer un nombre entre 0 et 999 :$10$@
+#$2$Centaine -> @
+#$3$Dizaine -> @
+#$4$Unité -> @
+#$5$C'est plus !$10$@
+#$6$C'est moins !$10$@
+#$7$Bien joué ! Vous avez gagné ! Le nombre était bien @
+#dadc@!kdr; fonction affiche
+#m; fonction modulo : pour entre '0' et '9' (de 10 en 10) depuis s
+c0kec1kec2kec3kec4kec5kec6kec7kec8kec9ke; si l'endroit ou se trouve DATA est un digit on arrête
+++++++++++jm; sinon on rajoute 10 et on recommence. Attention : les chiffres entre 0 et 5 seront légèrement plus fréquents. (oh, well)
+#er; fin fonction modulo

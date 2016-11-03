@@ -1,0 +1,11 @@
+#lsx?a;	(x):=random. Affiche(x)
+ssadadadadadadadada;	print("Autre ?");
+sii;	(i)<-input
+cokl;	si input='o' retour au début
+q;	sinon on quitte.
+#x$0$#s$10$Autre ?  
+#i*
+
+;Remarque, en compact le programme donnerait :
+;#lsx?assadadadadadadadadasiicokl#x$0$#s$10$Autre ? #i*
+;et ça marcherait super bien ! ;)

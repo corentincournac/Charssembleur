@@ -1,0 +1,105 @@
+s$0$fd; phrase d'intrp
+#i
+snc$9$kq; si n=9 on quitte
+sgfds$1$fd; affiche la grille et le joueur
+s$3$fdsxi; x<-input
+s$4$fdsyi; y<-input
+sgmsxc1k$11$; on se met sur g, on sauvegarde la position, si x=1 go 11
+vddmsxc2k$11$; on reprend la position sur la grille, on se déplace vers la droite. si x vaut 2 go 11
+vddmsxc3k$11$; on reprend on se déplace, si x vaut 3 go 11
+s$5$fdji; x/=1,2,3 : on affiche erreur et on redemande
+#$11$
+vmsyc1k$12$; on retourne sur la case en cours, sy y=1 go 12
+vbbmsyc2k$12$; on reprend on se déplace veres le bas, y=2 go 12
+vbbmsyc3k$12$;  idem, y=3
+s$6$fdji; si y/=1,2,3 : affiche erreur et redemande
+#$12$
+vmc k$22$; si la case est un espace on saute en 22
+s$7$fdji; si la case n'était pas un espace alors erreur et retour au prompt
+#$22$
+s$2$ggggggc1k$13$j$14$; on regarde le num du joueur. si c'est 1 on va en 13, sinon en 14
+#$13$w2; on remplace 1 par 1
+vwX; on met un X sur la case
+sn+; si n++
+j$41$; go check victoire
+ji; retour boucle
+#$14$w1; on remplace 2 par 1
+vwO; on met un O sur la case
+sn+; n++
+j$41$; check de victoires
+ji; fin boucle (désuet)
+#q
+sgfds$8$fd; afficher la grille et quitter
+q;
+
+#g
+ | | $10$
+-----$10$
+ | | $10$
+-----$10$
+ | | $10$$10$@
+
+#$41$;check victoire joueur 1 : ligne 1
+sgm; on va sur la grille, on garde la position
+cX!k$42$ddcX!k$42$ddcX!k$42$j$40$; si les 3 sont des croix on va en 40, sinon en 2
+#$42$; check victoire j1 : ligne 2
+vmbbcX!k$43$ddcX!k$43$ddcX!k$43$j$40$; on se déplace de 2 vers le bas puis on check
+#$43$; check victoire j1 : ligne 3
+vmbbbbcX!k$44$ddcX!k$44$ddcX!k$44$j$40$
+#$44$; check victoire j1 : colonne 1
+vmcX!k$45$bbcX!k$45$bbcX!k$45$j$40$
+#$45$; check victoire j1 : colonne 2
+vmddcX!k$46$bbcX!k$46$bbcX!k$46$j$40$
+#$46$; check victoire j1 : colonne 3
+vmddddcX!k$47$bbcX!k$47$bbcX!k$47$j$40$
+#$47$;check victoire j1 : diagonale 1
+vmcX!k$48$bbddcX!k$48$bbddcX!k$48$j$40$
+#$48$; check victoire j1 : diagonale 2
+vmddddddcX!k$49$bbggcX!k$49$bbggcX!k$49$j$40$
+#$49$; le joueur 1 n'a pas gagné
+j$51$; go check victoire j2
+#$40$; victoire j1
+s$200$fdjq;	affiher texte victoire, aller à q
+
+#$51$;check victoire j2 : ligne 1
+sgm; on va sur la grille, on garde la position
+cO!k$52$ddcO!k$52$ddcO!k$52$j$50$; si les 3 sont des O on va en 50, sinon en 2
+#$52$; check victoire j2 : ligne 2
+vmbbcO!k$53$ddcO!k$53$ddcO!k$53$j$50$; on se déplace de 2 vers le bas puis on check
+#$53$; check victoire j2 : ligne 3
+vmbbbbcO!k$54$ddcO!k$54$ddcO!k$54$j$50$
+#$54$; check victoire j2 : colonne 1
+vmcO!k$55$bbcO!k$55$bbcO!k$55$j$50$
+#$55$; check victoire j2 : colonne 2
+vmddcO!k$56$bbcO!k$56$bbcO!k$56$j$50$
+#$56$; check victoire j2 : colonne 3
+vmddddcO!k$57$bbcO!k$57$bbcO!k$57$j$50$
+#$57$;check victoire j2 : diagonale 1
+vmcO!k$58$bbddcO!k$58$bbddcO!k$58$j$50$
+#$58$; check victoire j2 : diagonale 2
+vmddddddcO!k$59$bbggcO!k$59$bbggcO!k$59$j$50$
+#$59$; le j2 n'a pas gagné
+ji; go back i
+#$50$; victoire j2
+s$201$fdjq;	affiher texte victoire, aller à q
+
+
+
+
+#$0$Bienvenue au jeu sophistiqué de Morpion !$10$
+Vous devez aligner 3 pions.$10$
+Se joue en joueur contre joueur.$10$$10$@
+
+#$1$Au tour du joueur 1.$10$@#$2$
+#$3$Coordonnée X : @
+#$4$Coordonnée Y : @
+#x*#y*#n$0$
+#$5$Erreur : Coordonnée x invalide (1<=x<=3)$10$@
+#$6$Erreur : Coordonnée y invalide (1<=y<=3)$10$@
+#$7$Erreur : un pion a déjà été joué à cet endroit.$10$@
+#$8$Fin de partie !$10$@
+
+#$200$Victoire du joueur 1 !$10$@
+#$201$Victoire du joueur 2 !$10$@
+
+#dadc@kejd#er

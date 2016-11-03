@@ -1,0 +1,207 @@
+
+s$0$fd; afficher l'intro
+s$7$fdi; afficher entrez lettre, input. (remplace l'@ de fin) 
+j$180$; aller au placement de mines
+#b; boucle principale
+ff; afficher la grille
+s$8$fdsii; afficher Input, i:=input;
+cdk>cgk<chk^cbkV; check d,g,h,b, jump e,g,h,b
+cqkq; si q on quitte
+cuku; si u on découvre
+cfkP; si f on flagge
+
+#s; suite
+jb; retour boucle principale
+#q;
+q;
+
+#>; déplacement droite
+sx+c$17$!ksw$1$js; x:=x+1. si x!=17 on continue, sinon x:=1 et on continue (suite)
+#<; deplacement gauche
+sx-c$0$!ksw$16$js;
+#^; déplacement haut
+sy-c$0$!ksw$10$js;
+#V; deplacement bas
+sy+c$11$!ksw$1$js;
+
+#g; grille de 16x10 entourée de L
+LLLLLLLLLLLLLLLLLL
+L$0$$0$$0$$0$$0$$0$$0$$0$$0$$0$$0$$0$$0$$0$$0$$0$L
+L$0$$0$$0$$0$$0$$0$$0$$0$$0$$0$$0$$0$$0$$0$$0$$0$L
+L$0$$0$$0$$0$$0$$0$$0$$0$$0$$0$$0$$0$$0$$0$$0$$0$L
+L$0$$0$$0$$0$$0$$0$$0$$0$$0$$0$$0$$0$$0$$0$$0$$0$L
+L$0$$0$$0$$0$$0$$0$$0$$0$$0$$0$$0$$0$$0$$0$$0$$0$L
+L$0$$0$$0$$0$$0$$0$$0$$0$$0$$0$$0$$0$$0$$0$$0$$0$L
+L$0$$0$$0$$0$$0$$0$$0$$0$$0$$0$$0$$0$$0$$0$$0$$0$L
+L$0$$0$$0$$0$$0$$0$$0$$0$$0$$0$$0$$0$$0$$0$$0$$0$L
+L$0$$0$$0$$0$$0$$0$$0$$0$$0$$0$$0$$0$$0$$0$$0$$0$L
+L$0$$0$$0$$0$$0$$0$$0$$0$$0$$0$$0$$0$$0$$0$$0$$0$LX
+LLLLLLLLLLLLLLLLLL
+
+#x$8$#y$5$#i*; x : position x. y : position y. i : variable multiusage
+#o$160$; le nombre de cases à découvrir pour gagner
+
+
+#$0$Le demineur par -Coco-$10$
+Gameplay :$10$
+Entrez 'd' pour vous déplacer d'une case vers la droite$10$
+'g' pour une case vers la gauche$10$
+'h' pour une case vers le haut$10$
+'b' pour une case vers le bas$10$
+'f' pour poser/enlever un drapeau$10$
+'x' pour découvrir la case$10$
+'q' pour quitter la partie$10$$10$@
+
+#dadc@!kdr; affichage de chaînes terminées par @
+#$1$$10$; un saut à la ligne classico
+#$2$X; un X : pour l'affichage
+#$3$ 12345678*; les nombres à afficher
+#$4$P; un P : pour l'affichage (drapeaux)
+#$5$<; les signaux de position
+#$6$^;
+#$7$Entrez une lettre pour commencer la partie : @
+#$8$$10$$10$Input => @
+#$253$$10$Yay, vous avez gagné ! :)$10$@
+#$252$$10$Oh noes, vous avez perdu ! :($10$@
+
+#f; affichage de la grille
+s$1$a; affiche retour chariot
+sylscde; on met la valeur de y dans le compare universel
+siw$1$; i:=1
+sgbd; en g, début grille
+#$20$; boucle
+m; on mémorise
+cLk$21$; L : retour à la ligne
+c$0$k$23$c$1$k$23$c$2$k$23$c$3$k$23$c$4$k$23$c$5$k$23$c$6$k$23$c$7$k$23$c$8$k$23$c$9$k$23$; 0,1,2,3,4,5,6,7,8,9 : on saute en 23 (affiche X)
+j$24$; on tente d'afficher le numéro
+#$21$; etiquette retour ligne
+sifc!; si i!=y (compare univ)
+k$211$; on affiche retour direct
+s$5$a; on affiche <
+#$211$si+s$1$avdcXk$22$dj$20$; i:=i+1, on affiche un retour, on retourne sur la grille et on se déplace à droite 1 fois, on regarde si c'est la fin, sinon on se redécale, puis on boucle
+
+#$22$; instruction arrêt, affichage de ^
+sxlscde; on met la valeur de x dans le compare universel
+siw$1$; i:=1
+#$220$
+sifc; si i=y
+k$221$; on saute en 221 
+si+; sinon i:=i+1
+s$3$aj$220$; on affiche espace et on boucle
+#$221$
+s$6$ar; on affiche ^, on dépile, et on s'arrête
+
+#$23$s$2$avdj$20$; on affiche X, on retourne sur la grille et on se déplace à droite
+#$24$c$10$s$3$k$241$vm; si c'est 10 on affiche espace (3), puis retour à la grille
+c$11$s$3$dk$241$vm; si c'est 11, etc..
+c$12$s$3$ddk$241$vm;
+c$13$s$3$dddk$241$vm;
+c$14$s$3$ddddk$241$vm;
+c$15$s$3$dddddk$241$vm;
+c$16$s$3$ddddddk$241$vm;
+c$17$s$3$dddddddk$241$vm;
+c$18$s$3$ddddddddk$241$vm;
+c$19$s$3$dddddddddk$241$vm; jusqu'à 19
+s$4$j$241$; si c'est rien de tout ça alors c'est un drapeau, on l'affiche via 241
+#$241$avdj$20$; on affiche, blabla
+
+
+
+#P; fonction drapeau
+sxlscde; x dans comparateur universel
+sgdbm; on va en g (début grille), on retient
+siw$1$; i:=1
+#$150$
+si;
+fck$151$+vdmj$150$; si i=x alors jump 151 sinon i:=i+1, on se déplace à droite, boucler
+#$151$
+siw$1$; i:=1
+sylscde; y => comparateur universel
+vm; retour position dans g
+#$152$
+si;
+fck$153$+vbmj$152$; si i=y alors jump 153 sinon i:=i+1, on se déplace en bas, boucler
+#$153$; à ce stade, s est sur la bonne case
+v; on se déplace au bon endroit et on dépile
+c$10$kbc$11$kbc$12$kbc$13$kbc$14$kbc$15$kbc$16$kbc$17$kbc$18$kb; si c'est découvert on retourne à la principale
+c$20$k$154$c$21$k$154$c$22$k$154$c$23$k$154$c$24$k$154$c$25$k$154$c$26$k$154$c$27$k$154$c$28$k$154$c$29$k$154$; si y'a déjà un drapeau on l'enleve
+++++++++++++++++++++; (+20)
+jb; retour boucle principale
+#$154$
+--------------------; (-20)
+jb; retour boucle principale
+
+
+#u;
+sxlscde; x dans comparateur universel
+sgdbm; on va en g (début grille), on retient
+siw$1$; i:=1
+#$160$
+si;
+fck$161$+vdmj$160$; si i=x alors jump 161 sinon i:=i+1, on se déplace à droite, boucler
+#$161$
+siw$1$; i:=1
+sylscde; y => comparateur universel
+vm; retour position dans g
+#$162$
+si;
+fck$163$+vbmj$162$; si i=y alors jump 163 sinon i:=i+1, on se déplace en bas, boucler
+#$163$; à ce stade, s est sur la bonne case
+v; on dépile et on va au bon endroit
+fX; on appelle la fonction X (découvrir récursif)
+jb; retour boucle
+
+#X; fonction récursive de découvrage
+c$0$kY; si c'est un 0 on balance du récursif
+c$10$kZc$11$kZc$12$kZc$13$kZc$14$kZc$15$kZc$16$kZc$17$kZc$18$kZc$19$kZ;
+c$20$kZc$21$kZc$22$kZc$23$kZc$24$kZc$25$kZc$26$kZc$27$kZc$28$kZc$29$kZ; si y'a un drapeau ou une case découverte on Z
+cLkZ; Si c'est un L (bord de la grille) on s'arrête (Z=stop)
+++++++++++c$19$k$255$so-c$0$k$254$r; sinon on découvre la case et stahp, si o--=0 go 254
+; si c'est 19 (mine découverte) on va en 255 (perdu)
+#Y
+m
+++++++++++so-c$0$k$254$vm; si o--=0 go 254
+hgfXvmhfXvmhdfXvm; récursif sur le haut
+gfXvmdfXvm; récursif sur le milieu
+bgfXvmbfXvmbdfXvmv; récursif sur le bas, retour au milieu, dépile
+;hfXv;
+#Z
+r;
+
+#$180$; début de la boucle de placement de mines
+soc$140$kb; si mines placées = 20, stahp
+si?fm;
+sgdbm;
+#$181$
+sic$0$k$182$-vbmj$181$; si i=0 next, sinon i--, on va vers le bas
+#$182$
+si?fM
+#$183$
+sic$0$k$184$-vdmj$183$
+#$184$
+v
+c$9$k$180$m; check si ya dja une mine
+#$188$
+so-v
+w$9$; point=9
+hgf$189$df$189$df$189$bf$189$bf$189$gf$189$gf$189$hf$189$; +1 tout autour
+;jb
+j$180$
+
+#$189$
+c$9$krcLkr+r;
+
+#cc*r@; fonction compare universelle. Remplacer l'* par ce que vous voulez
+
+#m; modulo 10
+c$0$krc$1$krc$2$krc$3$krc$4$krc$5$krc$6$krc$7$krc$8$krc$9$kr
+++++++++++jm;
+#M; modulo 16
+c$0$krc$1$krc$2$krc$3$krc$4$krc$5$krc$6$krc$7$krc$8$krc$9$krc$10$krc$11$krc$12$krc$13$krc$14$krc$15$kr
+++++++++++++++++jM;
+
+#rr
+#$255$
+ffs$252$fdq;
+#$254$
+ffs$253$fdq;
